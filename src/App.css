@@ -1,0 +1,133 @@
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.board {
+  position: relative;
+  width: min(980px, 100%);
+  padding: 18px;
+}
+
+.board::before {
+  content: "";
+  position: absolute;
+  inset: 22px 10px 0;
+  border-radius: 28px;
+  background: linear-gradient(90deg, rgba(0, 213, 255, 0.28), rgba(128, 74, 255, 0.14) 50%, rgba(255, 52, 123, 0.28));
+  filter: blur(30px);
+  opacity: 0.9;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.header__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.title {
+  margin: 0;
+  padding: 14px 34px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.6rem, 2vw, 2.35rem);
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-shadow: 0 0 10px #fff;
+}
+
+.reset-button {
+  padding: 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #f7fbff;
+  cursor: pointer;
+}
+
+.score-list {
+  display: grid;
+  gap: 16px;
+}
+
+.score-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(110, 140, 210, 0.24);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+}
+
+.score-row__name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.score-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 2px solid;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.score-card__value {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 800;
+  text-shadow: 0 0 20px currentColor;
+}
+
+.score-card__controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.score-card__controls button {
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f7fbff;
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header__actions {
+    justify-content: space-between;
+  }
+
+  .score-row {
+    grid-template-columns: 1fr;
+  }
+}
+
