@@ -67,11 +67,17 @@ function App() {
     );
   }
 
+  function toggleFullscreen() {
+    void document.documentElement.requestFullscreen();
+  }
+
   return (
     <main className="page">
       <section className="board">
         <div className="header">
-          <h1 className="title">SCOREBOARD</h1>
+          <h1 className="title" onClick={toggleFullscreen}>
+            SCOREBOARD
+          </h1>
           <div className="header__actions">
             <button
               type="button"
@@ -80,6 +86,7 @@ function App() {
             >
               Add Player
             </button>
+
             <button
               type="button"
               className="reset-button"
@@ -92,17 +99,14 @@ function App() {
 
         <div className="score-list">
           {scores.map((entry) => (
-            <div key={entry.id} className="score-row">
-              <div className="score-row__name" style={{ color: entry.color }}>
-                {entry.name}
-              </div>
-              <ScoreCard
-                color={entry.color}
-                score={entry.score}
-                onDec={(points) => updateScore(entry.id, -points)}
-                onInc={(points) => updateScore(entry.id, points)}
-              />
-            </div>
+            <ScoreCard
+              key={entry.id}
+              name={entry.name}
+              color={entry.color}
+              score={entry.score}
+              onDec={(points) => updateScore(entry.id, -points)}
+              onInc={(points) => updateScore(entry.id, points)}
+            />
           ))}
         </div>
       </section>

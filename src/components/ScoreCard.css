@@ -1,0 +1,64 @@
+.score-card {
+  display: grid;
+  position: relative;
+  /* padding: 10px; */
+  /* grid-template-columns: minmax(140px, 220px) 1fr; */
+  gap: 16px;
+  align-items: center;
+  padding: 16px 20px;
+  border: 2px solid;
+  border-right: none;
+  border-left: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.score-card__name {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.score-card__panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.score-card__value {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 800;
+  text-shadow: 0 0 20px currentColor;
+}
+
+.score-card__controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.score-card__controls button {
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f7fbff;
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .score-card {
+    grid-template-columns: 1fr;
+  }
+}

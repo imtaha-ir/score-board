@@ -60,62 +60,6 @@
   gap: 16px;
 }
 
-.score-row {
-  display: grid;
-  grid-template-columns: minmax(140px, 220px) 1fr;
-  gap: 16px;
-  align-items: center;
-  padding: 18px;
-  border-radius: 24px;
-  border: 1px solid rgba(110, 140, 210, 0.24);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
-}
-
-.score-row__name {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.25rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
-.score-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 16px 20px;
-  border: 2px solid;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.score-card__value {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Orbitron', sans-serif;
-  font-size: clamp(2.4rem, 4vw, 3.2rem);
-  font-weight: 800;
-  text-shadow: 0 0 20px currentColor;
-}
-
-.score-card__controls {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.score-card__controls button {
-  padding: 10px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #f7fbff;
-  cursor: pointer;
-}
-
 @media (max-width: 760px) {
   .header {
     flex-direction: column;
@@ -126,8 +70,5 @@
     justify-content: space-between;
   }
 
-  .score-row {
-    grid-template-columns: 1fr;
-  }
 }
 
