@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ScoreCard from "./components/ScoreCard";
 import "./App.css";
 
@@ -13,12 +13,24 @@ const COLORS = ["#22d8ff", "#ff3f79", "#ffd166", "#4ade80", "#f59e0b"];
 
 function App() {
   const [scores, setScores] = useState<ScoreEntry[]>([]);
+  const [scoresAreZero, setScoresAreZero] = useState(true);
+
+  useEffect(() => {
+    const allScoresAreZero = scores.every((scoreInfo) => scoreInfo.score === 0);
+    setScoresAreZero(allScoresAreZero);
+  }, [scores]);
 
   function resetScores() {
-    if (confirm("Delete all players too?") === true) {
-      setScores([]);
+    if (scoresAreZero) {
+      if (confirm("Delete all players?") === true) {
+        setScores([]);
+      }
     } else {
-      setScores((current) => current.map((entry) => ({ ...entry, score: 0 })));
+      if (confirm("Reset scores?") === true) {
+        setScores((current) =>
+          current.map((entry) => ({ ...entry, score: 0 })),
+        );
+      }
     }
   }
 
@@ -67,6 +79,14 @@ function App() {
     );
   }
 
+  function updateName(id: number, newName: string) {
+    setScores((current) =>
+      current.map((entry) =>
+        entry.id === id ? { ...entry, name: newName } : entry,
+      ),
+    );
+  }
+
   function toggleFullscreen() {
     void document.documentElement.requestFullscreen();
   }
@@ -86,14 +106,15 @@ function App() {
             >
               Add Player
             </button>
-
-            <button
-              type="button"
-              className="reset-button"
-              onClick={resetScores}
-            >
-              Reset
-            </button>
+            {scores.length > 0 && (
+              <button
+                type="button"
+                className="reset-button"
+                onClick={resetScores}
+              >
+                {scoresAreZero ? "Reset Board" : "Reset Scores"}
+              </button>
+            )}
           </div>
         </div>
 
@@ -106,6 +127,7 @@ function App() {
               score={entry.score}
               onDec={(points) => updateScore(entry.id, -points)}
               onInc={(points) => updateScore(entry.id, points)}
+              onEditName={(newName) => updateName(entry.id, newName)}
             />
           ))}
         </div>

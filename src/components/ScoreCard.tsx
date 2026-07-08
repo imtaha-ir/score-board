@@ -6,12 +6,30 @@ type ScoreCardProps = {
   score: number;
   onInc: (points: number) => void;
   onDec: (points: number) => void;
+  onEditName: (newName: string) => void;
 };
 
-function ScoreCard({ name, color, score, onInc, onDec }: ScoreCardProps) {
+function ScoreCard({
+  name,
+  color,
+  score,
+  onInc,
+  onDec,
+  onEditName,
+}: ScoreCardProps) {
+  const handleNameChange = () => {
+    const newName = prompt("Edit name", name);
+    if (newName) onEditName(newName);
+  };
+
   return (
     <div className="score-card" style={{ borderColor: color }}>
-      <div className="score-card__name" style={{ color }}>
+      <div
+        className="score-card__name"
+        style={{ color }}
+        onClick={handleNameChange}
+        title="Click to Change"
+      >
         {name}
       </div>
       <div className="score-card__panel">

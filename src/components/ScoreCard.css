@@ -22,6 +22,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
+  cursor: pointer;
 }
 
 .score-card__panel {
