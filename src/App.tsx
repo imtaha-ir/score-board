@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import ScoreCard from "./components/ScoreCard";
 import "./App.css";
 
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: "accepted" | "dismissed"; platform: string }>;
+}
+
 type ScoreEntry = {
   id: number;
   name: string;
@@ -14,6 +19,9 @@ const COLORS = ["#22d8ff", "#ff3f79", "#ffd166", "#4ade80", "#f59e0b"];
 function App() {
   const [scores, setScores] = useState<ScoreEntry[]>([]);
   const [scoresAreZero, setScoresAreZero] = useState(true);
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null);
+  const [showInstallBanner, setShowInstallBanner] = useState(false);
 
   useEffect(() => {
     setScores([
@@ -36,6 +44,45 @@ function App() {
     const allScoresAreZero = scores.every((scoreInfo) => scoreInfo.score === 0);
     setScoresAreZero(allScoresAreZero);
   }, [scores]);
+
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (event: Event) => {
+      event.preventDefault();
+      setDeferredPrompt(event as BeforeInstallPromptEvent);
+      setShowInstallBanner(true);
+    };
+
+    const handleAppInstalled = () => {
+      setDeferredPrompt(null);
+      setShowInstallBanner(false);
+    };
+
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    window.addEventListener("appinstalled", handleAppInstalled);
+
+    return () => {
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt,
+      );
+      window.removeEventListener("appinstalled", handleAppInstalled);
+    };
+  }, []);
+
+  async function installApp() {
+    if (!deferredPrompt) {
+      return;
+    }
+
+    await deferredPrompt.prompt();
+    const choice = await deferredPrompt.userChoice;
+
+    if (choice.outcome === "accepted") {
+      setShowInstallBanner(false);
+    }
+
+    setDeferredPrompt(null);
+  }
 
   function resetScores() {
     if (scoresAreZero) {
@@ -111,6 +158,31 @@ function App() {
   return (
     <main className="page">
       <section className="board">
+        {showInstallBanner && (
+          <div className="install-banner" role="status">
+            <div>
+              <strong>Install Score Board</strong>
+              <p>Keep it on your home screen and use it like a native app.</p>
+            </div>
+            <div className="install-banner__actions">
+              <button
+                type="button"
+                className="install-button"
+                onClick={installApp}
+              >
+                Install
+              </button>
+              <button
+                type="button"
+                className="install-dismiss"
+                onClick={() => setShowInstallBanner(false)}
+              >
+                Later
+              </button>
+            </div>
+          </div>
+        )}
+
         <div className="header">
           <h1 className="title" onClick={toggleFullscreen}>
             SCOREBOARD

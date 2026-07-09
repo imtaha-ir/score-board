@@ -23,6 +23,52 @@
   pointer-events: none;
 }
 
+.install-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  background: rgba(6, 14, 28, 0.8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.install-banner strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+.install-banner p {
+  margin: 0;
+  color: rgba(247, 251, 255, 0.72);
+  font-size: 0.9rem;
+}
+
+.install-banner__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.install-button,
+.install-dismiss {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f7fbff;
+  cursor: pointer;
+}
+
+.install-button {
+  background: linear-gradient(90deg, #22d8ff, #4ade80);
+  color: #071022;
+  font-weight: 700;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -61,6 +107,15 @@
 }
 
 @media (max-width: 760px) {
+  .install-banner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .install-banner__actions {
+    justify-content: flex-end;
+  }
+
   .header {
     flex-direction: column;
     align-items: stretch;
