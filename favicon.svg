@@ -1,100 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg"
-     width="512"
-     height="512"
-     viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <!-- Outer circle background -->
+  <circle cx="256" cy="256" r="240" fill="#e0d24e"/>
+  <circle cx="256" cy="256" r="220" fill="#1e2937"/>
 
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1E3A8A"/>
-      <stop offset="100%" stop-color="#0F172A"/>
-    </linearGradient>
+  <!-- Blue rectangle (left) -->
+  <rect 
+    x="50" y="64" 
+    width="300" height="160" 
+    rx="24" ry="24" 
+    fill="#3b82f6" 
+    stroke="#1e40af" 
+    stroke-width="18"/>
 
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#22D3EE"/>
-      <stop offset="100%" stop-color="#3B82F6"/>
-    </linearGradient>
-  </defs>
+  <!-- Red rectangle (right, slightly overlapping) -->
+  <rect 
+    x="150" y="288" 
+    width="300" height="156" 
+    rx="24" ry="24" 
+    fill="#ef4444" 
+    stroke="#991b1b" 
+    stroke-width="18"/>
 
-  <!-- Rounded background -->
-  <rect
-      x="16"
-      y="16"
-      width="480"
-      height="480"
-      rx="96"
-      fill="url(#bg)"/>
+  <!-- Score on Blue: 0 (perfectly centered) -->
+  <text 
+    x="190" y="155" 
+    font-family="Arial Black, sans-serif" 
+    font-size="88" 
+    font-weight="900" 
+    fill="#ffffff" 
+    text-anchor="middle" 
+    dominant-baseline="middle">0</text>
 
-  <!-- Scoreboard body -->
-  <rect
-      x="82"
-      y="120"
-      width="348"
-      height="250"
-      rx="32"
-      fill="#111827"/>
+  <!-- Score on Red: 1 (perfectly centered) -->
+  <text 
+    x="300" y="380" 
+    font-family="Arial Black, sans-serif" 
+    font-size="88" 
+    font-weight="900" 
+    fill="#ffffff" 
+    text-anchor="middle" 
+    dominant-baseline="middle">1</text>
 
-  <!-- Divider -->
-  <rect
-      x="252"
-      y="145"
-      width="8"
-      height="200"
-      rx="4"
-      fill="#334155"/>
-
-  <!-- Left score -->
-  <text
-      x="170"
-      y="290"
-      text-anchor="middle"
-      font-family="Inter, Arial, sans-serif"
-      font-size="128"
-      font-weight="800"
-      fill="#22D3EE">
-      3
-  </text>
-
-  <!-- Right score -->
-  <text
-      x="342"
-      y="290"
-      text-anchor="middle"
-      font-family="Inter, Arial, sans-serif"
-      font-size="128"
-      font-weight="800"
-      fill="#F8FAFC">
-      7
-  </text>
-
-  <!-- Top lights -->
-  <circle cx="122" cy="95" r="10" fill="#22C55E"/>
-  <circle cx="150" cy="95" r="10" fill="#EAB308"/>
-  <circle cx="178" cy="95" r="10" fill="#EF4444"/>
-
-  <!-- React-inspired orbit -->
-  <g transform="translate(256 398)">
-    <ellipse
-        rx="72"
-        ry="24"
-        fill="none"
-        stroke="url(#accent)"
-        stroke-width="10"/>
-    <ellipse
-        rx="72"
-        ry="24"
-        transform="rotate(60)"
-        fill="none"
-        stroke="url(#accent)"
-        stroke-width="10"/>
-    <ellipse
-        rx="72"
-        ry="24"
-        transform="rotate(-60)"
-        fill="none"
-        stroke="url(#accent)"
-        stroke-width="10"/>
-
-    <circle r="12" fill="#22D3EE"/>
-  </g>
 
 </svg>
