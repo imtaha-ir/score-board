@@ -16,6 +16,23 @@ function App() {
   const [scoresAreZero, setScoresAreZero] = useState(true);
 
   useEffect(() => {
+    setScores([
+      {
+        id: 1,
+        name: "Player 1",
+        score: 0,
+        color: COLORS[0],
+      },
+      {
+        id: 2,
+        name: "Player 2",
+        score: 0,
+        color: COLORS[1],
+      },
+    ]);
+  }, []);
+
+  useEffect(() => {
     const allScoresAreZero = scores.every((scoreInfo) => scoreInfo.score === 0);
     setScoresAreZero(allScoresAreZero);
   }, [scores]);
